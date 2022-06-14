@@ -22,12 +22,12 @@ const LeftBarWrapper = styled.div`
 `
 
 export default function LeftBar({ ...props }) {
-    const [id,] = useContext(TrackContext)
+    const [currentTrack,] = useContext(TrackContext)
 
     return(
         <LeftBarWrapper>
             {props.props.data.map((track) =>
-                track.id == id ? (
+                track.id == currentTrack?.id ? (
                     <SideBarTrack key={'track_id: ' + track.id} props={track}
                                   active={true}
                     />

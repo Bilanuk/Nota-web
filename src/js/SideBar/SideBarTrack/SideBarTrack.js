@@ -2,31 +2,20 @@ import React, {useContext} from "react";
 import styled from "styled-components";
 import {TrackContext} from "../../context";
 
+import './sideBarTrack.scss'
+
 const SideBarTrackStyled = styled.div`
   height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
-  margin: 20px;
-  backdrop-filter: blur(5px);
-  transition: all 1s;
+  margin: 6px;
+  transition: all 0.7s;
 `
-const ActiveSideBarTrackStyled = styled.div`
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 20px;
-  backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.11);
-  transition: all 1s;
-`
+// background-color: rgba(255, 255, 255, 0.11);
 
 const TrackCoverWrapper = styled.div`
   width: 100px;
@@ -50,22 +39,13 @@ const TrackData = styled.div`
 
 export default function SideBarTrack({ ...props }) {
     const [, setTrack] = useContext(TrackContext)
-
-    if (props.active) return (
-        <ActiveSideBarTrackStyled onClick={() => setTrack(props.props)}>
-            <TrackCoverWrapper>
-                <TrackCover src={props.props.attributes.image_url}/>
-            </TrackCoverWrapper>
-
-            <TrackData>
-                <p>{props.props.attributes.title}</p>
-                <p>{props.props.attributes.author}</p>
-            </TrackData>
-        </ActiveSideBarTrackStyled>
-    )
+    console.log(props.active)
 
     return(
-        <SideBarTrackStyled onClick={() => setTrack(props.props)}>
+        <SideBarTrackStyled
+            className={ props.active ? 'active' : null }
+            onClick={() => setTrack(props.props)}
+        >
             <TrackCoverWrapper>
                 <TrackCover src={props.props.attributes.image_url}/>
             </TrackCoverWrapper>

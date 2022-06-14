@@ -9,14 +9,13 @@ import {API_URL, TrackContext} from "./context";
 export default function App() {
     const [isPlaying, setIsPlaying] = useState(false)
     const [currentTrack, setTrack] = useState()
-    console.log(isPlaying)
 
     const [{data, loading, error}, refetch] = useAxios({
         url: API_URL + 'track'
     })
 
     if (loading) return null
-    if (error) return null
+    if (error) return console.log(error)
 
     return(
         <TrackContext.Provider value={[currentTrack, setTrack]}>
